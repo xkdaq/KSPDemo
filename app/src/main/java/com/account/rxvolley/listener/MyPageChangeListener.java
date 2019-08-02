@@ -1,6 +1,6 @@
 package com.account.rxvolley.listener;
 
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
