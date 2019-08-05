@@ -1,32 +1,59 @@
 package com.account.rxvolley.fragment;
 
-import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.account.myapplication.R;
+import com.account.rxvolley.base.BaseFragment;
+import com.account.rxvolley.presenter.HomePresenter;
+import com.account.rxvolley.view.HomeView;
 
-public class HomeFragment extends Fragment {
+import butterknife.BindView;
+
+public class HomeFragment extends BaseFragment<HomePresenter, HomeView> implements HomeView{
+
+    @BindView(R.id.recycle_home)
+    RecyclerView recycleHome;
+    @BindView(R.id.swipe_refresh)
+    SwipeRefreshLayout swipeRefresh;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected HomePresenter createPresenter() {
+        return new HomePresenter();
+    }
+
+    @Override
+    protected int provideContentViewId() {
+        return R.layout.fragment_home;
+    }
+
+    @Override
+    public void initView(View rootView) {
+
+//        recycleHome.setLayoutManager(new LinearLayoutManager(getContext()));
+//        mAdapter = new ArticleListAdapter(getContext(), null, 0);
+//        recycleHome.setAdapter(mAdapter);
+    }
+
+
+    @Override
+    public void getDataError(String errorMessage) {
 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        return rootView;
+    public void showProgress(String msg) {
+
     }
 
+    @Override
+    public void hideProgress() {
 
+    }
 }
